@@ -1,0 +1,72 @@
+-------------------------
+DESCRIPCION DEL ALGORITMO
+-------------------------
+
+En esta practica de programacion de un compresor/descompresor se ha utilizado el algoritmo LZW, desarrollado originalmente por 
+Abraham Lempel y Jacob Ziv, y mejorado posteriormente por Terry Welch en 1984. Dicho algoritmo se basa en la busqueda de 
+cadenas de bytes repetidas en el fichero a comprimir, para asi construir un diccionario de equivalencias que asigne codigos 
+breves a dichas cadenas; posteriormente se transforma el fichero utilizando estos indices obtenidos. El diccionario es construido
+sobre la marcha durante la etapa de compresion, y no es necesario almacenarlo junto al fichero para la descompresion, ya que
+el descompresor es capaz de recostruirlo usando la misma logica que el compresor, obteniendo finalmente el fichero original.
+
+-----------
+COMPILACION
+-----------
+
+Para compilar el programa, solo es necesario asegurarse de tener instalado la utilidad GNU make, asi como la coleccion de 
+compiladores de GNU (gcc). Una vez situados en el directorio donde estan contenidos los codigos fuentes, ejecutar:
+
+   $> make lzw
+
+Esto generara un ejecutable ELF llamado "lzw" en el mismo directorio. Para compilar el codigo correspondiente al compresor
+y descompresor que utiliza zlib:
+
+   $> make zlib
+
+Y se generara un ejecutable en el directorio actual, llamado "zlib"
+
+--------------------
+INSTRUCCIONES DE USO
+--------------------
+
+"lzw" consta de las siguiente opciones para pasarsele como parametros de ejecucion:
+
+   -c 'file'    Compresion: Se aplicara el algoritmo de compresion al fichero 'file' 
+   -d 'file'    Descompresion: Se aplicara el algoritmo de descompresion al fichero 'file'
+   -h           Ayuda: Imprime por pantalla estas instrucciones resumidas y sale del programa
+
+Por defecto, la salida del programa se dirige hacia "stdout", por lo que si queremos grabar en un fichero aparte la compresion
+o descompresion realizada, utilizaremos el operador de flujo de la shell '>' hacia el fichero deseado.
+
+"zlib", por su parte, es aun mas sencillo:
+
+   -c 'file'   Compresion: Aplica la compresion zlib a 'file', y guarda el resultado en './zlib.out'
+   -d 'file'   Descompresion: Aplica la descompresion zlib a 'file', y guarda el resultado en './zlib.orig'
+
+----------------------
+EJEMPLO DE UTILIZACION
+----------------------
+
+Una vez obtenido el ejecutable "lzw", procederemos de la siguiente manera para comprimir el fichero llamado, por ejemplo, 
+"quijote_fr.txt", en un nuevo fichero llamado "quijote_fr.compressed:
+
+   $> lzw -c quijote_fr.txt > quijote_fr.compressed
+
+Para descomprimir este ultimo archivo y devolverlo a su estado original en otro fichero llamado "quijote_fr.original":
+
+   $> lzw -d quijote_fr.compressed > quijote_fr.original
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Ahora, utilizaremos el ejecutable "zlib" para comprimir "quijote_en.txt":
+
+   $> zlib -c quijote_en.txt
+
+Se generara el fichero './zlib.out' conteniendo la version comprimida de "quijote_en.txt". Para descomprimirla de nuevo:
+
+   $> zlib -d zlib.out
+
+Este ultimo paso generara el fichero './zlib.orig', que sera identico al "quijote_en.txt" original
+
+
+-EOF-

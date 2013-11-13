@@ -1,0 +1,18 @@
+A continuacion se muestra la tabla de resultados obtenida usando la implementacion
+escogida del algoritmo LZW:
+
+
++----------------+---------------+-----------------+---------+---------------+--------------+
+|    FICHERO     | TAM. ORIGINAL | TAM. COMPRIMIDO |  RATIO  | T. COMPRESION | T. DESCOMPR. |
++----------------+---------------+-----------------+---------+---------------+--------------+
++----------------+---------------+-----------------+---------+---------------+--------------+
+| quijote_en.txt |  2.347.772 B  |    916.242 B    | 39,02 % |   0m 5.420s   |  0m 1.235s   |
++----------------+---------------+-----------------+---------+---------------+--------------+
+| quijote_es.txt |  2.143.292 B  |    828.086 B    | 38,63 % |   0m 4.869s   |  0m 1.165s   |
++----------------+---------------+-----------------+---------+---------------+--------------+
+| quijote_fr.txt |  1.266.594 B  |    507.908 B    | 40,10 % |   0m 2.916s   |  0m 0.720s   |
++----------------+---------------+-----------------+---------+---------------+--------------+
+
+
+NOTA: Los datos referentes al tiempo de ejecución fueron obtenidos en un PC equipado
+con un procesador Intel Pentium 4 2'00 GHz mononucleo, 256 MB de memoria RAM. 
